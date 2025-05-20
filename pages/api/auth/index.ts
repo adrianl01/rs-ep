@@ -15,6 +15,6 @@ export default async function auth(req: NextApiRequest, res: NextApiResponse) {
     const userRes = await findOrCreateUser(email, name);
     res.send(userRes);
   } else {
-    res.send({ message: "Method Not Allowed" });
+    res.status(405).send({ message: "Method Not Allowed" });
   }
 }

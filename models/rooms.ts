@@ -82,7 +82,7 @@ export class Room {
         console.log("userId:", userId);
         const rtdbRoomsRef = ref(rtdb, "rooms/" + randomUUID());
         await set(rtdbRoomsRef, {
-          messages: {},
+          messages: [],
           owner: userId,
           guest: null,
           createdAt: new Date().toISOString(),
@@ -99,6 +99,8 @@ export class Room {
         });
         return {
           id: roomShortId.toString(),
+          rtdbRoomId: roomLongId,
+          owner: userId,
         };
       } else {
         throw new Error("User not found");
