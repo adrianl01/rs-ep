@@ -49,7 +49,15 @@ export class Room {
     await res(qGuest2);
     return list;
   }
-  static async getRoomById(userId: string, roomId: string, guestName: string) {
+  static async getRoomById({
+    userId,
+    roomId,
+    guestName,
+  }: {
+    userId: string;
+    roomId: string;
+    guestName: string;
+  }) {
     const roomRef = doc(roomsRef, roomId);
     const roomSnap = await getDoc(roomRef);
     const dataRes = roomSnap.data();
@@ -75,7 +83,13 @@ export class Room {
       throw new Error("Room not found");
     }
   }
-  static async createNewRoom(userId: string, userName: string) {
+  static async createNewRoom({
+    userId,
+    userName,
+  }: {
+    userId: string;
+    userName: string;
+  }) {
     try {
       const userDoc = await getDoc(doc(usersRef, userId));
       if (userDoc.exists()) {
@@ -86,6 +100,10 @@ export class Room {
           owner: userId,
           ownerName: userName,
           guest: "",
+          roomInfo: {
+            guestName: "",
+            guestUserId: "",
+          },
           createdAt: new Date().toISOString(),
           updatedAt: new Date().toISOString(),
         });

@@ -13,7 +13,13 @@ export class User {
     this.ref = doc(usersRef, id);
   }
 
-  static async findByEmailOrCreate(email: string, name: string) {
+  static async findByEmailOrCreate({
+    email,
+    name,
+  }: {
+    email: string;
+    name: string;
+  }) {
     const cleanEmail = email.trim().toLowerCase();
     const q = await query(usersRef, where("email", "==", cleanEmail));
     const searchRes = await getDocs(q);

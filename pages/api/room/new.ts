@@ -13,7 +13,7 @@ export default async function newRoom(
       res.status(400).json({ message: "User ID or User Name wasn't found" });
       return;
     }
-    const userRes = await newRoomCont(userId, userName);
+    const userRes = await newRoomCont({ userId, userName });
     res.send(userRes);
   } else {
     res.send({ message: "Method Not Allowed" });

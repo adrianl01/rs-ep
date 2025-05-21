@@ -9,10 +9,7 @@ export default async function auth(req: NextApiRequest, res: NextApiResponse) {
     if (!email) {
       res.status(400).json({ message: "Email wasn't found" });
     }
-    // if (!name) {
-    //   res.status(400).json({ message: "Name wasn't found" });
-    // }
-    const userRes = await findOrCreateUser(email, name);
+    const userRes = await findOrCreateUser({ email, name });
     res.send(userRes);
   } else {
     res.status(405).send({ message: "Method Not Allowed" });
