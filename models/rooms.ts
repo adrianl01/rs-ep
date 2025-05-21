@@ -100,7 +100,7 @@ export class Room {
           owner: userId,
           ownerName: userName,
           guest: "",
-          roomInfo: {
+          guestInfo: {
             guestName: "none",
             guestUserId: "none",
           },
