@@ -62,19 +62,19 @@ export class Room {
     const roomSnap = await getDoc(roomRef);
     const dataRes = roomSnap.data();
     if (roomSnap.exists()) {
-      if (dataRes?.guest === null) {
-        console.log("guest is null");
+      if (dataRes?.guestName === null) {
+        console.log("guestName is null");
         await setDoc(roomRef, {
           ...dataRes,
           updatedAt: new Date().toISOString(),
-          guest: guestName,
+          guestName: guestName,
           guestUserId: userId,
         });
         const roomSnap2 = await getDoc(roomRef);
         const dataRes2 = roomSnap2.data();
         return dataRes2;
       } else {
-        console.log("guest is not null");
+        console.log("guestName is not null");
         const roomSnap2 = await getDoc(roomRef);
         const dataRes2 = roomSnap2.data();
         return dataRes2;
