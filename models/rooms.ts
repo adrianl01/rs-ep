@@ -101,8 +101,8 @@ export class Room {
           ownerName: userName,
           guest: "",
           roomInfo: {
-            guestName: "",
-            guestUserId: "",
+            guestName: "none",
+            guestUserId: "none",
           },
           createdAt: new Date().toISOString(),
           updatedAt: new Date().toISOString(),
