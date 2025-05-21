@@ -14,6 +14,6 @@ export async function joinRoomCont(
   roomId: string,
   guestName: string
 ) {
-  const roomRef = await Room.getRoomById(roomId, userId, guestName);
+  const roomRef = await Room.getRoomById(userId, roomId, guestName);
   return roomRef;
 }

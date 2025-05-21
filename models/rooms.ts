@@ -49,7 +49,7 @@ export class Room {
     await res(qGuest2);
     return list;
   }
-  static async getRoomById(roomId: string, guestName: string, userId: string) {
+  static async getRoomById(userId: string, roomId: string, guestName: string) {
     const roomRef = doc(roomsRef, roomId);
     const roomSnap = await getDoc(roomRef);
     const dataRes = roomSnap.data();
@@ -84,7 +84,8 @@ export class Room {
         await set(rtdbRoomsRef, {
           messages: [],
           owner: userId,
-          guest: null,
+          ownerName: userName,
+          guest: "",
           createdAt: new Date().toISOString(),
           updatedAt: new Date().toISOString(),
         });
@@ -93,8 +94,8 @@ export class Room {
           rtdbRoomId: roomLongId,
           owner: userId,
           ownerName: userName,
-          guest: null,
-          guestUserId: null,
+          guest: "",
+          guestUserId: "",
           createdAt: new Date().toISOString(),
         });
         return {
